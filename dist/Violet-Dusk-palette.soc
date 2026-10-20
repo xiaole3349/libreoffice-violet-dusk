@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<office:color-table xmlns:office="http://openoffice.org/2000/office" xmlns:draw="http://openoffice.org/2000/drawing">
+  <!-- Violet Dusk 1.1.0 palette -->
+  <draw:color draw:name="界面底 #343061" draw:color="#343061"/>
+  <draw:color draw:name="菜单背景 #2C2953" draw:color="#2C2953"/>
+  <draw:color draw:name="悬停面 #423D7A" draw:color="#423D7A"/>
+  <draw:color draw:name="选中块 #4A4494" draw:color="#4A4494"/>
+  <draw:color draw:name="分隔线 #4A4685" draw:color="#4A4685"/>
+  <draw:color draw:name="深阴影 #1E1C38" draw:color="#1E1C38"/>
+  <draw:color draw:name="界面白 #FFFFFF" draw:color="#FFFFFF"/>
+  <draw:color draw:name="次要文字 #B8B4E0" draw:color="#B8B4E0"/>
+  <draw:color draw:name="禁用文字 #8B87B8" draw:color="#8B87B8"/>
+  <draw:color draw:name="强调紫 #9B8CFF" draw:color="#9B8CFF"/>
+  <draw:color draw:name="画布底 #F4F1FD" draw:color="#F4F1FD"/>
+  <draw:color draw:name="画布浅层 #E9E3FA" draw:color="#E9E3FA"/>
+  <draw:color draw:name="网格线 #D9D1F2" draw:color="#D9D1F2"/>
+  <draw:color draw:name="墨紫正文 #241F3D" draw:color="#241F3D"/>
+  <draw:color draw:name="次要墨 #6E68A0" draw:color="#6E68A0"/>
+  <draw:color draw:name="数值蓝 #1F5AA8" draw:color="#1F5AA8"/>
+  <draw:color draw:name="公式绿 #1F7A4C" draw:color="#1F7A4C"/>
+  <draw:color draw:name="引用品红 #A8387F" draw:color="#A8387F"/>
+  <draw:color draw:name="数字紫 #6C4FC9" draw:color="#6C4FC9"/>
+  <draw:color draw:name="错误红 #B3362F" draw:color="#B3362F"/>
+  <draw:color draw:name="提示橙 #9A5A00" draw:color="#9A5A00"/>
+  <draw:color draw:name="字符串橄榄 #6B5A00" draw:color="#6B5A00"/>
+  <draw:color draw:name="定位紫 #8B79E8" draw:color="#8B79E8"/>
+</office:color-table>

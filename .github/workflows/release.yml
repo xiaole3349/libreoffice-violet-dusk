@@ -1,0 +1,47 @@
+name: build-and-release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build extension
+        run: python build-violet-dusk-theme.py
+
+      - name: Verify package
+        run: |
+          python - <<'PY'
+          import glob, zipfile, xml.etree.ElementTree as ET
+          oxt = sorted(glob.glob('dist/*.oxt'))[-1]
+          z = zipfile.ZipFile(oxt)
+          assert z.testzip() is None, "zip 损坏"
+          for n in ('Theme.xcu', 'description.xml', 'META-INF/manifest.xml'):
+              ET.fromstring(z.read(n))
+          theme = z.read('Theme.xcu').decode('utf-8')
+          entries = theme.count('<node oor:name="') - 3   # 去掉 3 层外层节点
+          print(f"{oxt}: {entries} 个颜色项")
+          assert entries == 93, f"颜色项数量异常: {entries}"
+          PY
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.oxt
+            dist/*.soc
+            docs/导入说明.txt
+          generate_release_notes: true

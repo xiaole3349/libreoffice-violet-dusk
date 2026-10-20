@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Violet Dusk v1.1 — 深色外壳 + 浅紫单元格画布</title>
+<style>
+  :root{
+    --bg:#1b1930; --card:#242142; --line:#3d3870;
+    --fg:#f2f0ff; --fg2:#b9b5e2; --fg3:#8f8ab9;
+    --accent:#9b8cff; --ok:#7ce38b;
+    --paper:#f4f1fd; --ink:#241f3d;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; padding:40px 24px 64px;
+    background:radial-gradient(1200px 600px at 20% -10%, #2a2650 0%, var(--bg) 60%);
+    color:var(--fg);
+    font:15px/1.7 "Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+  }
+  .wrap{max-width:980px;margin:0 auto}
+  .kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  h1{font-size:29px;line-height:1.32;margin:10px 0 6px}
+  .sub{color:var(--fg2);margin:0 0 26px}
+  h2{font-size:18px;margin:36px 0 12px;padding-left:12px;border-left:3px solid var(--accent)}
+  p{margin:10px 0}
+  .code{font-family:"Cascadia Code",Consolas,monospace;font-size:13px;background:#151329;border:1px solid var(--line);padding:2px 6px;border-radius:5px;color:#cfc9ff}
+  .hero{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 8px}
+  .swatch{border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+  .swatch .bar{height:110px;display:flex;align-items:center;justify-content:center;font-weight:600}
+  .swatch .meta{padding:10px 14px;background:var(--card);font-size:13px;color:var(--fg2)}
+  .swatch .meta b{color:var(--fg);font-family:"Cascadia Code",Consolas,monospace}
+  .paper-demo{background:var(--paper);height:110px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr)}
+  .paper-demo div{border-right:1px solid #d9d1f2;border-bottom:1px solid #d9d1f2;display:flex;align-items:center;justify-content:center;font-size:12px;color:#241f3d}
+  .paper-demo .focus{outline:2px solid #8b79e8;outline-offset:-2px;background:#efe9fd}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--fg3);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+  tbody tr:hover{background:#2b2750aa}
+  td.k{font-family:"Cascadia Code",Consolas,monospace;color:#d8d2ff;white-space:nowrap}
+  .chip{display:inline-flex;align-items:center;gap:7px;font-family:"Cascadia Code",Consolas,monospace;font-size:12.5px}
+  .dot{width:13px;height:13px;border-radius:4px;border:1px solid #00000033;flex:none}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .card h3{margin:0 0 6px;font-size:13px;color:var(--accent);font-weight:600;letter-spacing:.04em}
+  .card p{margin:0;font-size:13px;color:var(--fg2)}
+  .note{border-left:3px solid #ffc07a;background:#3a2f28;padding:12px 16px;border-radius:0 10px 10px 0;margin:16px 0;font-size:14px;color:#ffe0bc}
+  .ok{border-left-color:var(--ok);background:#1f3a2c;color:#c8ffd8}
+  ol,ul{padding-left:22px;margin:10px 0}
+  li{margin:6px 0}
+  code{font-family:"Cascadia Code",Consolas,monospace;font-size:13px;color:#d8d2ff}
+  .foot{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);color:var(--fg3);font-size:12.5px}
+  @media(max-width:720px){.hero,.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">Violet Dusk v1.1 · LibreOffice 26.8</div>
+  <h1>深色外壳保留，单元格画布改为浅紫</h1>
+  <p class="sub">界面仍是 #343061 + 纯白文字；Calc 表格区与 Writer 纸张改为 #F4F1FD 浅紫底，与单元格定位色同属紫罗兰色系，文字同步换成深墨紫。</p>
+
+  <div class="hero">
+    <div class="swatch">
+      <div class="bar" style="background:#343061;color:#fff">界面外壳 &nbsp;#343061</div>
+      <div class="meta">菜单栏 / 工具栏 / 窗口 · 白字 <b>#FFFFFF</b></div>
+    </div>
+    <div class="swatch">
+      <div class="paper-demo">
+        <div>1,280</div><div class="focus">3,460</div><div>720</div><div>=SUM(B1:B3)</div>
+        <div>16%</div><div>240</div><div>1,900</div><div>#N/A</div>
+      </div>
+      <div class="meta">画布 <b>#F4F1FD</b> · 网格 <b>#D9D1F2</b> · 定位框 <b>#8B79E8</b></div>
+    </div>
+  </div>
+
+  <h2>一、改了哪几个配置项</h2>
+  <p>路径不变：<span class="code">org.openoffice.Office.UI / ColorScheme / ColorSchemes / Violet Dusk / &lt;条目&gt; / Color</span>。这次只动「文档 / 单元格」这一组，界面外壳一个没碰。</p>
+
+  <table>
+    <thead><tr><th>配置项</th><th>作用区域</th><th>旧值（深色）</th><th>新值（浅紫）</th></tr></thead>
+    <tbody>
+      <tr><td class="k">DocColor</td><td><b>单元格 / 纸张底色</b></td><td><span class="chip"><i class="dot" style="background:#2b2852"></i>#2B2852</span></td><td><span class="chip"><i class="dot" style="background:#f4f1fd"></i>#F4F1FD</span></td></tr>
+      <tr><td class="k">CalcGrid</td><td>网格线</td><td><span class="chip"><i class="dot" style="background:#4a4685"></i>#4A4685</span></td><td><span class="chip"><i class="dot" style="background:#d9d1f2"></i>#D9D1F2</span></td></tr>
+      <tr><td class="k">CalcText</td><td>单元格文字</td><td><span class="chip"><i class="dot" style="background:#ffffff"></i>#FFFFFF</span></td><td><span class="chip"><i class="dot" style="background:#241f3d"></i>#241F3D</span></td></tr>
+      <tr><td class="k">FontColor</td><td>文档正文默认色</td><td><span class="chip"><i class="dot" style="background:#ffffff"></i>#FFFFFF</span></td><td><span class="chip"><i class="dot" style="background:#241f3d"></i>#241F3D</span></td></tr>
+      <tr><td class="k">CalcValue</td><td>数值</td><td><span class="chip"><i class="dot" style="background:#8fd8ff"></i>#8FD8FF</span></td><td><span class="chip"><i class="dot" style="background:#1f5aa8"></i>#1F5AA8</span></td></tr>
+      <tr><td class="k">CalcFormula</td><td>公式</td><td><span class="chip"><i class="dot" style="background:#7ce38b"></i>#7CE38B</span></td><td><span class="chip"><i class="dot" style="background:#1f7a4c"></i>#1F7A4C</span></td></tr>
+      <tr><td class="k">CalcReference</td><td>引用标识</td><td><span class="chip"><i class="dot" style="background:#ff9bd2"></i>#FF9BD2</span></td><td><span class="chip"><i class="dot" style="background:#a8387f"></i>#A8387F</span></td></tr>
+      <tr><td class="k">CalcNotesBackground</td><td>批注单元格底色</td><td><span class="chip"><i class="dot" style="background:#423d7a"></i>#423D7A</span></td><td><span class="chip"><i class="dot" style="background:#e9e3fa"></i>#E9E3FA</span></td></tr>
+      <tr><td class="k">CalcCellFocus</td><td><b>单元格定位框</b></td><td><span class="chip"><i class="dot" style="background:#c0b0ff"></i>#C0B0FF</span></td><td><span class="chip"><i class="dot" style="background:#8b79e8"></i>#8B79E8</span></td></tr>
+      <tr><td class="k">CalcPageBreak</td><td>分页线</td><td><span class="chip"><i class="dot" style="background:#8b87b8"></i>#8B87B8</span></td><td><span class="chip"><i class="dot" style="background:#6e68a0"></i>#6E68A0</span></td></tr>
+    </tbody>
+  </table>
+
+  <p style="color:var(--fg2)">界面那 30 多项（<span class="code">AppBackground</span>、<span class="code">MenuBarColor</span>、<span class="code">MenuBarTextColor</span>、<span class="code">WindowColor</span>、<span class="code">FaceColor</span> 等）全部保持上一版，仍是 #343061 + #FFFFFF。</p>
+
+  <h2>二、对比度实测（WCAG 2.1）</h2>
+  <table>
+    <thead><tr><th>前景 / 背景</th><th>用在哪</th><th>对比度</th><th>判定</th></tr></thead>
+    <tbody>
+      <tr><td class="k">#241F3D / #F4F1FD</td><td>单元格正文、Writer 正文</td><td><b>14.08:1</b></td><td style="color:#7ce38b">AAA</td></tr>
+      <tr><td class="k">#1F5AA8 / #F4F1FD</td><td>数值、链接</td><td><b>6.11:1</b></td><td style="color:#7ce38b">AA+</td></tr>
+      <tr><td class="k">#6B5A00 / #F4F1FD</td><td>字符串</td><td><b>6.10:1</b></td><td style="color:#7ce38b">AA+</td></tr>
+      <tr><td class="k">#B3362F / #F4F1FD</td><td>拼写 / 错误</td><td><b>5.41:1</b></td><td style="color:#7ce38b">AA</td></tr>
+      <tr><td class="k">#A8387F / #F4F1FD</td><td>引用</td><td><b>5.33:1</b></td><td style="color:#7ce38b">AA</td></tr>
+      <tr><td class="k">#1F7A4C / #F4F1FD</td><td>公式</td><td><b>4.78:1</b></td><td style="color:#7ce38b">AA</td></tr>
+      <tr><td class="k">#8B79E8 / #F4F1FD</td><td>定位框（图形元素）</td><td><b>3.14:1</b></td><td style="color:#f6f08c">≥3:1 达标</td></tr>
+      <tr><td class="k">#FFFFFF / #343061</td><td>菜单栏、工具栏文字</td><td><b>12.06:1</b></td><td style="color:#7ce38b">AAA</td></tr>
+    </tbody>
+  </table>
+
+  <h2>三、定位框为什么加深了</h2>
+  <p>原来的 <span class="code">#C0B0FF</span> 在深底上很亮眼，放到 <span class="code">#F4F1FD</span> 上却只有约 <b>1.6:1</b>，那条行列十字线会基本消失。所以定位框改成同色相的 <span class="code">#8B79E8</span>——仍是紫罗兰，但在浅底上稳定达到 <b>3.14:1</b>（图形元素的可辨识门槛为 3:1）。</p>
+  <p>而 <span class="code">#F4F1FD</span> 正是从这一族紫罗兰里取的极浅调：色相约 255°，与定位框、界面 #343061 同源，所以深色外壳、浅色画布、紫色定位框三者不会互相打架。</p>
+
+  <div class="note">
+    <b>注意：</b><span class="code">DocColor</span> 是全局「文档背景」，不只影响 Calc——Writer 的纸张、Draw 的页面也会一起变浅紫。LibreOffice 没有单独的「Calc 单元格背景」配置项，这是主题框架的固有限制。相应地正文默认色 <span class="code">FontColor</span> 也已同步改成深色，否则白字会看不见。
+  </div>
+
+  <h2>四、应用与回退</h2>
+  <ol>
+    <li>扩展已覆盖安装为 <b>v1.1.0</b>，当前主题仍是 <b>Violet Dusk</b>，重启 LibreOffice 即生效。</li>
+    <li><b>不要</b>勾选「使用白色文档背景」——一旦勾上，画布会被强制变纯白，浅紫底色失效。</li>
+    <li>想再调：改 <code>build-violet-dusk-theme.py</code> 里的 <code>DOC</code> 字典 → 重跑脚本 → 关闭 LO → <code>unopkg add</code> 覆盖安装。</li>
+    <li>回退到全深色：外观页切回 <b>Dracula</b> 即可（扩展仍在）。</li>
+  </ol>
+
+  <div class="cards">
+    <div class="card"><h3>想更浅</h3><p>把 <code>DOC["bg"]</code> 调到 <code>0xFAF8FF</code>，网格线跟着提到 <code>0xE2DCF7</code>。</p></div>
+    <div class="card"><h3>想更紫</h3><p><code>DOC["bg"]</code> 用 <code>0xEDE7FE</code>，紫调更明显，仍属浅色系。</p></div>
+    <div class="card"><h3>恢复深色画布</h3><p>把 <code>DOC["bg"]</code> 改回 <code>0x2B2852</code>，深色文字要一并换回亮色。</p></div>
+  </div>
+
+  <div class="note ok">
+    <b>Basic IDE 保持深色：</b><code>BASICEditor</code> 仍是 #2B2852，语法高亮配色未动——代码编辑器不适合浅底，也不受这次改动影响。
+  </div>
+
+  <div class="foot">Violet Dusk v1.1.0 · 93 个颜色项 · 与 LibreOffice 26.8 <code>UI/ColorScheme</code> schema 逐项一致</div>
+</div>
+</body>
+</html>

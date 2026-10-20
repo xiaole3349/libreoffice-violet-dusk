@@ -1,0 +1,12 @@
+# 构建中间产物
+build/
+__pycache__/
+*.pyc
+
+# 脚本顺带生成的同内容副本（对外只提交 dist/ 里的版本化文件）
+/Violet-Dusk-theme.oxt
+
+# 本地调试残留
+lock-archive/
+*.bak
+*.bak-*
