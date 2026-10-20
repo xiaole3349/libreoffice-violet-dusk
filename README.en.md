@@ -6,6 +6,10 @@ An appearance theme for **LibreOffice 25.2+**: deep violet chrome (`#343061`) wi
 
 It ships as a standard `.oxt` extension (double-click to install) plus a matching `.soc` palette for use inside documents.
 
+![Violet Dusk theme preview: dark violet chrome with a light violet canvas](docs/preview.png)
+
+*Deep violet chrome `#343061` and light canvas `#F4F1FD`; cell C3 shows the `#8B79E8` locator with its matching row/column cross-highlight.*
+
 ```
 Chrome      AppBackground / WindowColor / FaceColor   #343061
 Menu bar    MenuBarColor                              #343061
