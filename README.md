@@ -6,6 +6,10 @@
 
 打包为标准 `.oxt` 扩展，双击即装；另附同色系 `.soc` 调色板，供文档取色使用。
 
+![Violet Dusk 主题预览：深紫外壳与浅紫单元格画布](docs/preview.png)
+
+*深紫外壳 `#343061` + 浅紫画布 `#F4F1FD`；C3 单元格显示 `#8B79E8` 定位框与同色系行列十字高亮*
+
 ```
 界面外壳  AppBackground / WindowColor / FaceColor   #343061
 菜单栏    MenuBarColor                              #343061
