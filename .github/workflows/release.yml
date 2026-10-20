@@ -14,14 +14,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 手动发布过的 tag 不再重复处理，避免同一个版本出现两份产物
+      - name: Gate on existing release
+        id: gate
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Release ${GITHUB_REF_NAME} 已存在，跳过自动构建。"
+          fi
+
       - uses: actions/setup-python@v5
+        if: steps.gate.outputs.skip != 'true'
         with:
           python-version: '3.12'
 
       - name: Build extension
+        if: steps.gate.outputs.skip != 'true'
         run: python build-violet-dusk-theme.py
 
       - name: Verify package
+        if: steps.gate.outputs.skip != 'true'
         run: |
           python - <<'PY'
           import glob, zipfile, xml.etree.ElementTree as ET
@@ -37,7 +52,7 @@ jobs:
           PY
 
       - name: Publish release
-        if: startsWith(github.ref, 'refs/tags/')
+        if: startsWith(github.ref, 'refs/tags/') && steps.gate.outputs.skip != 'true'
         uses: softprops/action-gh-release@v2
         with:
           files: |
